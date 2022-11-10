@@ -12,9 +12,13 @@
 <body>
 <h1>Etch-a-sketch</h1>
 <h6>Select size: </h6>
-<div class="board">
+<button id="btn-popup" class="select">Please input board size between</button>
 
-</div>
+<p id="message">message</p>
+<button class="black" onclick="setColor('black')">BLACK</button>
+<button class="random" onclick="setColor('random')">RANDOM</button>
+<button class="clear" onclick="resetBoard()">RESET</button>
+<div class="board"></div>
 
 
 </div>
