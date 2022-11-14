@@ -1,6 +1,3 @@
-
-
-
 let popUp = document.querySelector("#btn-popup")
 let color = 'black'
 let click = false
@@ -17,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
             let draw = document.querySelector('#draw')
                 if(click) {
-                    draw.innerHTML = "You can draw";
+                    draw.innerHTML = "Drawing status: You can draw";
                 }
                 else{
-                    draw.innerHTML = "You can't draw" 
+                    draw.innerHTML = "Drawing status: You can't draw" 
                 }
         }
     })
@@ -47,7 +44,7 @@ function whatSize() {
         else if ( boardSize <=0 || boardSize > 100 ){
             message.innerHTML = "Board size must be between 0 and 100"
         }else {
-            message.innerHTML = "Thank you"
+            message.innerHTML = "Board size acepted"
         }
         return boardSize; 
 
