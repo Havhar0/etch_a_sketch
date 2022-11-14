@@ -1,81 +1,98 @@
-let color = "black"
-let click = false;
+
+
+
+let popUp = document.querySelector("#btn-popup")
+let color = 'black'
+let click = false
 
 document.addEventListener("DOMContentLoaded", function(){
+
     createBoard(32);
 
-    document.querySelector("body").addEventListener("click", function(e){
-        if(e.target.tagName != "BUTTON"){
+    document.querySelector('body').addEventListener('click', function(e){
+
+        if (e.target.tagName != "BUTTON") {
+
             click = !click;
-            let draw = document.querySelector("#draw");
-            if(click){
-                draw.innerHTML = "You can draw"
-            }
-            else{
-                draw.innerHTML = "You can't draw"
-            }
+
+            let draw = document.querySelector('#draw')
+                if(click) {
+                    draw.innerHTML = "You can draw";
+                }
+                else{
+                    draw.innerHTML = "You can't draw" 
+                }
         }
-
-    }) 
-
-    let btnPopup = document.querySelector("#btn-popup");
-
-    btnPopup.addEventListener('click', function() {
-       let size = whatSize();
-       createBoard(size);
     })
 
+
+    popUp.addEventListener('click', function() {
+        
+        let size = whatSize()
+        createBoard(size)
+
+    })
 })
+
+
+
+function whatSize() {
+
+    let message = document.querySelector('#message')
+        let boardSize = prompt('What size is your board?')
+    
+        if ( boardSize == "" ){
+            message.innerHTML = "Please enter your board size"
+        }
+        else if ( boardSize <=0 || boardSize > 100 ){
+            message.innerHTML = "Board size must be between 0 and 100"
+        }else {
+            message.innerHTML = "Thank you"
+        }
+        return boardSize; 
+
+}
+
+
 
 function createBoard(size) {
 
-    let board = document.querySelector(".board");
+    let board = document.querySelector(".board") 
 
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-    let numDivs = size * size;
+    let numDivs = size * size
+    
+    for ( i = 0; i < numDivs; i++ ) {
 
-   for(let i=0; i < numDivs; i++){
-        let div = document.createElement("div");
+        let div = document.createElement("div")
         div.addEventListener("mouseover", colorDiv);
-        board.insertAdjacentElement("beforeend", div);
+        board.insertAdjacentElement('beforeend', div);
+        
     }
-}
-
-function whatSize() {
-
-    let gridChoice = prompt("Please enter size of the board");
-    let message = document.querySelector("#message");
-    if ( gridChoice == "" ) {
-        message.innerHTML = "Please enter a number";
-    } 
-    else if ( gridChoice < 0 || gridChoice > 100 ) {
-        message.innerHTML = "Please provide a number between 0 and 100"
-    }
-    else {
-        message.innerHTML = "Thank you"
-    }
-    return gridChoice;
 }
 
 function colorDiv() {
 
-    if(click){
-        if ( color == 'random') {
+    if(click) {
+
+        if (color == "random") {
             this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
         }
         else {
-            this.style.backgroundColor = "black"
+            this.style.backgroundColor = "black";
         }
     }
 }
 
-function setColor(colorChoice) {
-    color = colorChoice;
+function clearBoard() {
+
+    let divs = document.querySelectorAll('div')
+    divs.forEach( (div) => div.style.backgroundColor = "white")
+
 }
 
-function resetBoard() {
-    let divs = document.querySelectorAll("div")
-    divs.forEach( (div) => div.style.backgroundColor = "white" )
+function setColor(colorChoice){
+    color = colorChoice
 }
